@@ -1,0 +1,174 @@
+{% extends 'layouts/dashboard.twig' %}
+
+{% block body %}
+
+	{% if error %}
+		<div class="alert alert--danger">
+			<img src="/images/icons/danger.svg" alt="Warning icon" class="alert__icon">
+			{{ __('accounts.error') }}
+		</div>
+	{% endif %}
+
+	<section class="card report" id="accounts">
+		<header class="card__header reports__header">
+			<h2 class="card__title">{{ __('settings.accounts.title') }}</h2>
+			<div>
+				<a href="#" data-jq-dropdown="#jq-dropdown-1" class="button">{{ __('settings.accounts.add') }}</a>
+				<div id="jq-dropdown-1" class="jq-dropdown jq-dropdown-tip">
+					<ul class="jq-dropdown-menu">
+						{% for provider in providers %}
+							<li>
+								<a href="{{ provider.url }}">{{ provider.name }}</a>
+							</li>
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+		</header>
+		<main class="card__main">
+			{% if accounts | length == 0 %}
+				<div class="card__zero zerostate">
+					<div class="zerostate__image-container">
+						<img src="/images/illustrations/accounts.svg" class="zerostate__image">
+					</div>
+					<p class="zerostate__message">
+						{{ __('accounts.zero_state') }}
+					</p>
+				</div>
+			{% else %}
+				<ul class="card__items">
+					{% for account in accounts %}
+						<li class="settings__account-item card__item">
+							<span>
+								{{ account.type }}
+								•
+								{{ account.id }}
+								{% if account.isValid == false %}
+
+									<span class="settings__account-expired badge badge--danger">
+										{{ __('settings.accounts.expired') }}
+									</span>
+								{% endif %}
+							</span>
+							<span class="vertical-center">
+								<a data-delete="/accounts/{{ account._id }}/delete" class="button-link button-link--delete account__delete">
+									{{ __('settings.accounts.delete') }}
+								</a>
+							</span>
+						</li>
+					{% endfor %}
+				</ul>
+			{% endif %}
+		</main>
+	</section>
+
+	<form action="/settings/profile" method="POST">
+
+		<section class="card report">
+			<header class="card__header reports__header" id="invoices">
+				<h2 class="card__title">{{ __('settings.invoices.title') }}</h2>
+			</header>
+			<main class="card__main settings__main">
+				<input type="hidden" name="_csrf" value="{{ _csrf }}"/>
+				<div class="form__field">
+					<label for="address">{{ __('settings.invoices.address') }}</label>
+					<textarea type="text" name="address" id="address" rows="6">{{ user.settings.address }}</textarea>
+				</div>
+				<div class="form__field">
+					<label for="googleplay">{{ __('settings.invoices.googleplay') }}</label>
+					<textarea type="text" name="googleplay" id="googleplay" rows="6">{{ user.settings.googleplay.address }}</textarea>
+				</div>
+				<div class="form__field">
+					<label for="appstore">{{ __('settings.invoices.appstore') }}</label>
+					<textarea type="text" name="appstore" id="appstore" rows="6">{{ user.settings.appstore.address }}</textarea>
+				</div>
+			</main>
+			<footer class="card__footer">
+				<button type="submit">{{ __('settings.invoices.save') }}</button>
+			</footer>
+		</section>
+
+		<section class="card report">
+			<header class="card__header reports__header" id="profile">
+				<h2 class="card__title">{{ __('settings.profile.title') }}</h2>
+			</header>
+			<main class="card__main settings__main">
+				<div class="form__field">
+					<label for="email">{{ __('settings.profile.email') }}</label>
+					<input type="email" id="email" name="email" value="{{ user.email }}" required>
+				</div>
+				<div class="form__field">
+					<label for="currency">{{ __('settings.profile.currency') }}</label>
+					<select id="currency" name="currency">
+						{% for currency in currencyCodes %}
+							<option value="{{ currency }}" {% if currency == user.settings.currency %} selected="selected" {% endif %}>
+								{{ currency }}
+							</option>
+						{% endfor %}
+					</select>
+				</div>
+			</main>
+			<footer class="card__footer">
+				<button type="submit">{{ __('settings.profile.save') }}</button>
+			</footer>
+		</section>
+	</form>
+
+	<section class="card report">
+		<header class="card__header reports__header" id="subscription">
+			<h2 class="card__title">{{ __('settings.subscription.title') }}</h2>
+		</header>
+		<main class="card__main settings__main settings__subscription card__container">
+			{% if subscription %}
+				{% if subscription.isCanceled %}
+					<p>{{ __('settings.subscription.canceled_1') }}
+						<strong>{{ subscription.type }}</strong>
+						{{ __('settings.subscription.canceled_2') }}</p>
+					<p>{{ __('settings.subscription.effective_until') }}:
+						<strong>{{ subscription.endDate | date("m/d/Y") }}</strong>
+					</p>
+					<div class="settings__subscription-actions">
+						<a href="/subscription" class="button">{{ __('settings.subscription.subscribe') }}</a>
+					</div>
+				{% else %}
+					<p>{{ __('settings.subscription.current_plan') }}
+						<strong>{{ subscription.type }}</strong>
+					</p>
+					<div class="settings__subscription-actions">
+						<a href="/subscription" class="button">{{ __('settings.subscription.update_plan') }}</a>
+						<a data-delete="/subscription/cancel" class="button-link button-link--delete button--cancel-subscription">{{ __('settings.subscription.cancel') }}</a>
+					</div>
+				{% endif %}
+			{% else %}
+				<div class="subscription__plans">
+					{% for plan in plans %}
+						{% include 'partials/subscription-plan.twig' %}
+					{% endfor %}
+				</div>
+			{% endif %}
+		</main>
+	</section>
+
+	<form action="/settings/password" method="POST">
+		<section class="card report">
+			<header class="card__header reports__header" id="password">
+				<h2 class="card__title">{{ __('settings.password.title') }}</h2>
+			</header>
+			<main class="card__main settings__main">
+				<input type="hidden" name="_csrf" value="{{ _csrf }}"/>
+				<div class="form__field">
+					<label for="password">{{ __('settings.password.main') }}</label>
+					<input type="password" id="password" name="password" value="" required>
+				</div>
+				<div class="form__field">
+					<label for="confirmPassword">{{ __('settings.password.repeat') }}</label>
+					<input type="password" id="confirmPassword" name="confirmPassword" value="" required>
+				</div>
+			</main>
+			<footer class="card__footer">
+				<button type="submit">{{ __('settings.password.save') }}</button>
+			</footer>
+		</section>
+	</form>
+
+{% endblock %}

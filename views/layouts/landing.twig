@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		{% include '../partials/head.twig' %}
+		<title>{{ __('name') }}
+			|
+			{{ __('description') }}</title>
+		{% block head %}{% endblock %}
+	</head>
+
+	<body>
+		{% block body %}{% endblock %}
+
+		{% block scripts %}{% endblock %}
+		{% include '../partials/uservoice.twig' %}
+	</body>
+
+</html>

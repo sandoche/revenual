@@ -1,0 +1,30 @@
+{% if messages.errors %}
+	<div class="alert alert--danger">
+		<img src="/images/icons/danger.svg" alt="Warning icon" class="alert__icon">
+		<ul>
+			{% for error in messages.errors %}
+				<li>{{ error.msg }}</li>
+			{% endfor %}
+		</ul>
+	</div>
+{% endif %}
+{% if messages.info %}
+	<div class="alert alert--info">
+		<img src="/images/icons/info.svg" alt="Info icon" class="alert__icon">
+		<ul>
+			{% for info in messages.info  %}
+				<li>{{ info.msg }}</li>
+			{% endfor %}
+		</ul>
+	</div>
+{% endif %}
+{% if messages.success %}
+	<div class="alert alert--success">
+		<img src="/images/icons/success.svg" alt="Success icon" class="alert__icon">
+		<ul>
+			{% for success in messages.success %}
+				<li>{{ success.msg }}</li>
+			{% endfor %}
+		</ul>
+	</div>
+{% endif %}

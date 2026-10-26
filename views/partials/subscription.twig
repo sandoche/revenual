@@ -1,0 +1,12 @@
+<div class="subscription-floating">
+	<div class="subscription">
+		<h2 class="subscription__main-title">
+			{{ subscriptionInformation.recommendations.message }}
+		</h2>
+		<div class="subscription__plans">
+			{% for plan in subscriptionInformation.recommendations.recommendedPlans %}
+				{% include 'partials/subscription-plan.twig' %}
+			{% endfor %}
+		</div>
+	</div>
+</div>

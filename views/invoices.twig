@@ -1,0 +1,50 @@
+{% extends 'layouts/dashboard.twig' %}
+
+{% block body %}
+	<section class="card reports">
+		<header class="card__header reports__header">
+			<h1 class="card__title">{{ __('invoices.title') }}</h1>
+			<div class="accounts__form form-line">
+				<a href="/settings#invoices" class="button openModal">
+					{{ __('invoices.settings') }}
+				</a>
+			</div>
+		</header>
+		<main class="card__main">
+			{% if invoices | length == 0 %}
+				<div class="card__zero zerostate">
+					<div class="zerostate__image-container">
+						<img src="/images/illustrations/invoices.svg" class="zerostate__image">
+					</div>
+					<p class="zerostate__message">
+						{{ __('invoices.zero_state') }}
+					</p>
+					<div class="zerostate__call-to-action">
+						<a href="/reports" class="button">{{ __('invoices.zero_state_button') }}</a>
+					</div>
+				</div>
+			{% else %}
+				<ul class="card__items">
+					{% for invoice in invoices %}
+						<li class="reports__item card__item">
+							<a href="/invoices/{{ invoice.year }}-{{ invoice.month }}-{{ invoice.currency }}-{{ invoice.providerType }}-{{ invoice.userId }}.xlsx" class="reports__item-link card__item-link">
+								<span>
+									{{ invoice.monthString }}
+									{{ invoice.year }}
+									•
+									{{ invoice.providerType }}
+								</span>
+								<span class="vertical-center reports__price">
+									<span class="badge badge--accent">
+										{{ invoice.currency }}
+									</span>
+									<span class="card__chevron">›</span>
+								</span>
+							</a>
+						</li>
+					{% endfor %}
+				</ul>
+			{% endif %}
+		</main>
+	</section>
+{% endblock %}

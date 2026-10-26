@@ -1,0 +1,66 @@
+input,
+select,
+textarea {
+  border-style: solid;
+  padding: $space-xxs;
+  border-radius: $border-radius-sm;
+  border: none;
+  border: 1px solid $color-grey;
+  transition: all 0.3s ease;
+  font-size: $font-size-xxs;
+  box-sizing: content-box;
+  min-height: 20px;
+  line-height: normal;
+
+  &:focus {
+    outline: none;
+    border: 1px solid $color-primary;
+    box-shadow: 0 0 3px $color-primary-lighter;
+  }
+
+  @media screen and (max-width: $screen-lg) {
+    margin-bottom: $space-xxs;
+  }
+}
+
+.form-line {
+  display: flex;
+}
+
+.form {
+  &__field {
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: $space-xs;
+
+    select {
+      width: 100%;
+    }
+
+    label {
+      width: 200px;
+      padding-right: $space-md;
+      font-size: $font-size-xs;
+      font-weight: 500;
+    }
+
+    textarea {
+      width: 100%;
+    }
+
+    input {
+      width: 100%;
+    }
+  }
+
+  &--forgot {
+    text-align: left;
+
+    h1 {
+      font-size: $font-size-md;
+    }
+  }
+}

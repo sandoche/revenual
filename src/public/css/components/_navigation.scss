@@ -1,0 +1,120 @@
+.navigation {
+  position: sticky;
+  top: $space-md;
+
+  &__branding {
+    display: flex;
+    margin-bottom: $space-md;
+    align-items: flex-end;
+
+    .badge {
+      margin-left: $space-xs;
+    }
+
+    @media screen and (max-width: $screen-sm) {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: $screen-sm) {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    top: unset;
+    width: 100%;
+    padding: $space-sm $space-xs $space-xs $space-xs;
+    background: #fff;
+    box-shadow: $shadow-elevation-4;
+    z-index: 999;
+  }
+
+  &__logo {
+    width: 150px;
+  }
+
+  &__logo-nav {
+    width: 150px;
+  }
+
+  &__links {
+    padding-left: 0;
+    margin: 0;
+
+    @media screen and (max-width: $screen-sm) {
+      display: flex;
+      width: 100%;
+      justify-content: space-around;
+      align-items: center;
+    }
+  }
+
+  &__link {
+    list-style-type: none;
+    margin-bottom: $space-xxs;
+
+    @media screen and (max-width: $screen-sm) {
+      margin-bottom: 0;
+    }
+  }
+
+  &__link-a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: $color-primary-darker;
+
+    @media screen and (max-width: $screen-sm) {
+      flex-direction: column;
+      font-size: $font-size-xxxs;
+    }
+
+    &:hover {
+      .navigation__icon {
+        filter: saturate(100%) !important;
+        opacity: 1 !important;
+      }
+    }
+
+    .navigation__icon {
+      filter: saturate(50%);
+      opacity: 0.5;
+    }
+
+    &--active {
+      font-weight: 700;
+      color: $color-primary;
+
+      .navigation__icon {
+        filter: saturate(100%) !important;
+        opacity: 1 !important;
+      }
+    }
+  }
+
+  &__icon {
+    width: 24px;
+    margin-right: $space-xs;
+
+    @media screen and (max-width: $screen-sm) {
+      margin-right: 0;
+    }
+  }
+
+  &__submenu {
+    margin-top: $space-xxs;
+    padding-left: 0;
+    padding-left: $space-md;
+
+    @media screen and (max-width: $screen-sm) {
+      display: none;
+    }
+  }
+
+  &__separator {
+    margin-top: $space-sm;
+
+    @media screen and (max-width: $screen-sm) {
+      margin-top: 0;
+    }
+  }
+}

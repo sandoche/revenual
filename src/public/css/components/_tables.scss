@@ -1,0 +1,56 @@
+.dataTables_length,
+.dataTables_filter,
+.dataTables_info,
+.dataTables_paginate {
+  padding: $space-xs $space-sm !important;
+  font-size: $font-size-xxs !important;
+}
+
+.dataTable {
+  border-top: 2px solid $color-grey-lightest !important;
+}
+
+table.dataTable thead th,
+table.dataTable thead td,
+table.dataTable.no-footer {
+  border-bottom: 2px solid $color-grey-lightest !important;
+  font-size: $font-size-xxs !important;
+}
+
+.even {
+  background-color: $color-grey-light !important;
+}
+
+.odd {
+  background-color: $color-grey-lightest !important;
+}
+
+td {
+  padding: $space-xs $space-sm !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current,
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+  background: $color-primary-lighter !important;
+  border: none;
+  color: $color-primary-darker !important;
+  font-weight: 500;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  background: $color-primary-lightest !important;
+  color: $color-primary-darker !important;
+  border: none;
+}
+
+.dataTables_info {
+  margin-top: 8px;
+}
+
+table {
+  width: 100% !important;
+}
+
+.dataTables_info:first-of-type {
+  display: none !important;
+}

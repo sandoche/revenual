@@ -1,0 +1,27 @@
+{% extends 'layouts/dashboard.twig' %}
+
+{% block body %}
+	<section class="card reports">
+		{% if code == 404 %}
+			<div class="card__zero zerostate">
+				<div class="zerostate__image-container">
+					<img src="/images/illustrations/404.svg" class="zerostate__image">
+				</div>
+				<h1>{{ title }}</h1>
+				<p class="zerostate__message">
+					{{ __('error.404.message') }}
+				</p>
+			</div>
+		{% else %}
+			<div class="card__zero zerostate">
+				<div class="zerostate__image-container">
+					<img src="/images/illustrations/500.svg" class="zerostate__image">
+				</div>
+				<h1>{{ __('error.500.title') }}</h1>
+				<p class="zerostate__message">
+					{{ __('error.500.message') }}
+				</p>
+			</div>
+		{% endif %}
+	</section>
+{% endblock %}

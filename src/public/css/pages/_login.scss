@@ -1,0 +1,37 @@
+.login {
+  text-align: center;
+  width: 100%;
+  padding: $space-md $space-xxs;
+
+  img {
+    margin-bottom: $space-lg;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  input {
+    margin-bottom: $space-xs;
+  }
+
+  button {
+    margin-top: $space-xs;
+    margin-bottom: $space-md;
+  }
+}
+
+.frame {
+  width: 100%;
+  border: 1px solid $color-grey;
+  text-align: center;
+
+  &__link {
+    width: 100%;
+  }
+
+  p {
+    color: $color-grey-dark;
+  }
+}

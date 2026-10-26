@@ -1,0 +1,32 @@
+.zerostate {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: $space-xl;
+  padding-bottom: $space-xl;
+
+  &__image {
+    width: 100%;
+  }
+  &__image-container {
+    width: 200px;
+    height: 200px;
+    border-radius: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: $color-primary-lightest;
+    padding: $space-lg;
+    margin-bottom: $space-sm;
+  }
+  &__message {
+    color: $color-grey-dark;
+    font-weight: 500;
+    max-width: 500px;
+    text-align: center;
+    font-size: $font-size-xxs;
+    margin-bottom: $space-md;
+  }
+}

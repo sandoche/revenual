@@ -1,0 +1,16 @@
+{% extends 'layouts/accounts.twig' %}
+
+{% block body %}
+	<section class="accounts-connect__main">
+		<h1>{{ __('provider.apple.title') }}</h1>
+		<p>{{ __('provider.apple.description') }}
+			<a href="https://support.apple.com/en-us/HT204397" target="_blank">https://support.apple.com/en-us/HT204397</a>
+		</p>
+		<form method="POST" class="accounts-connect">
+			<input type="hidden" name="_csrf" value="{{ _csrf }}"/>
+			<input type="email" name="email" placeholder="{{ __('provider.apple.email') }}" required>
+			<input type="password" name="password" placeholder="{{ __('provider.apple.password') }}" required>
+			<button type="submit" class="button button--primary">{{ __('provider.submit') }}</button>
+		</form>
+	</section>
+{% endblock %}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		{% include '../partials/head.twig' %}
+		<title>{{ __('name') }}
+			|
+			{{ title }}</title>
+		{% block head %}{% endblock %}
+	</head>
+
+	<body class="body__dashboard">
+		<div class="dashboard container">
+			<aside class="dashboard__menu">
+				{% include '../partials/side-menu.twig' %}
+			</aside>
+			<main class="dashboard__content">
+				{% include '../partials/alerts.twig' %}
+				{% block body %}{% endblock %}
+			</main>
+		</div>
+
+		{% include '../partials/scripts.twig' %}
+		{% block scripts %}{% endblock %}
+		{% include '../partials/uservoice.twig' %}
+	</body>
+
+</html>

@@ -1,0 +1,72 @@
+{% extends 'layouts/registration.twig' %}
+
+{% block body %}
+	<div class="signup">
+		<div class="signup__space--first"></div>
+		<aside class="signup__infos-container">
+			<img src="/images/logo.svg" alt="Revenual" class="navigation__logo">
+			<ul class="signup__features">
+				<li class="signup__feature">
+					<img src="/images/icons/success.svg" alt="Success icon" class="signup__feature-icon">
+					<div>
+						<h2>{{ __('signup.feature1.title') }}</h2>
+						<p>{{ __('signup.feature1.description') }}</p>
+					</div>
+				</li>
+				<li class="signup__feature">
+					<img src="/images/icons/success.svg" alt="Success icon" class="signup__feature-icon">
+					<div>
+						<h2>{{ __('signup.feature2.title') }}</h2>
+						<p>{{ __('signup.feature2.description') }}</p>
+					</div>
+				</li>
+				<li class="signup__feature">
+					<img src="/images/icons/success.svg" alt="Success icon" class="signup__feature-icon">
+					<div>
+						<h2>{{ __('signup.feature3.title') }}</h2>
+						<p>{{ __('signup.feature3.description') }}</p>
+					</div>
+				</li>
+			</ul>
+		</aside>
+		<main class="signup__form-container">
+			<h1 class="signup__title">{{ __('signup.title') }}</h1>
+			{% include 'partials/alerts.twig' %}
+			<p class="signup__already">{{ __('signup.account_existing') }}
+				<a href="/login">
+					<span class="button-link button-link--primary">{{ __('signup.login') }}</span>
+				</a>
+			</p>
+			<form id="signup__form" class="signup__form" method="POST">
+				<input type="hidden" name="_csrf" value="{{ _csrf }}"/>
+				{% if email is defined and email is not null %}
+					<input type="hidden" name="email" value="{{ email }}"/>
+				{% else %}
+					<label class="signup__label" for="email">{{ __('signup.email.label') }}</label>
+					<input class="signup__input" type="email" name="email" id="email" placeholder="{{ __('signup.email.placeholder') }}" autofocus="autofocus" required="required"/>
+				{% endif %}
+				<label class="signup__label" for="password">{{ __('signup.password.label') }}</label>
+				<input class="signup__input" type="password" name="password" id="password" placeholder="{{ __('signup.password.placeholder') }}" required="required"/>
+				<label class="signup__label" for="confirmPassword">{{ __('signup.password_confirmation.label') }}</label>
+				<input
+				class="signup__input" type="password" name="confirmPassword" id="confirmPassword" placeholder="{{ __('signup.password_confirmation.placeholder') }}" required="required"/>
+				{# <label class="signup__label" for="currency">{{ __('signup.currency.label') }}</label>
+																								<select id="currency" name="currency">
+																									{% for currency in currencyCodes %}
+																										<option value="{{ currency }}">
+																											{{ currency }}
+																										</option>
+																									{% endfor %}
+																								</select> #}
+				<p>{{ __('signup.terms') }}
+					<a href="{{ termsPage }}" class="button-link button-link--primary" target="_blank">{{ __('signup.terms_link') }}</a>,
+					<a href="{{ privacyPage }}" class="button-link button-link--primary" target="_blank">{{ __('signup.privacy_link') }}</a>
+					and
+					<a href="{{ cookiesPage }}" class="button-link button-link--primary" target="_blank">{{ __('signup.cookies_link') }}</a>
+				</p>
+				<button class="button button--primary" type="submit">{{ __('signup.button') }}</button>
+			</form>
+		</main>
+		<div class="signup__space--last"></div>
+	</div>
+{% endblock %}

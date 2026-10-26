@@ -1,0 +1,40 @@
+{
+  "env": {
+    "es6": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:jest/recommended",
+    "plugin:node/recommended",
+    "plugin:security/recommended"
+  ],
+  "plugins": [
+    "jest",
+    "security"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module"
+  },
+  "rules": {
+    "semi": [
+      "error",
+      "never"
+    ],
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "no-use-before-define": 0,
+    "@typescript-eslint/no-use-before-define": 0,
+    "@typescript-eslint/explicit-member-accessibility": "off",
+    "no-magic-numbers": "error",
+    "node/no-unsupported-features/es-syntax": "off",
+    "node/no-missing-import": "off",
+    "node/no-unpublished-import": "off"
+  }
+}

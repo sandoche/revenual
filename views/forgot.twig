@@ -1,0 +1,17 @@
+{% extends 'layouts/authentication.twig' %}
+
+{% block body %}
+	<main class="login card">
+		<div class="card__container">
+			<img src="/images/logo.svg" alt="Revenual" class="navigation__logo">
+			<form method="POST" class="form--forgot">
+				<h1>{{ __('password_forgotten.title') }}</h1>
+				<input type="hidden" name="_csrf" value="{{ _csrf }}"/>
+				<p>{{ __('password_forgotten.description') }}</p>
+				<label class="col-form-label font-weight-bold" for="email">{{ __('password_forgotten.label') }}</label>
+				<input class="form-control" type="email" name="email" id="email" placeholder="{{ __('password_forgotten.placeholder') }}" autofocus="autofocus" required="required"/>
+				<button class="button button--primary" type="submit">{{ __('password_forgotten.button') }}</button>
+			</form>
+		</div>
+	</main>
+{% endblock %}

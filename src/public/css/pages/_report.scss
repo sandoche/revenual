@@ -1,0 +1,48 @@
+.report {
+  &__list-providers {
+    padding: $space-xs $space-sm;
+  }
+
+  &__charts {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+  }
+
+  &__exchange {
+    margin-bottom: $space-sm;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+
+    label {
+      width: 150px;
+      font-weight: 500;
+    }
+
+    input {
+      width: 100%;
+    }
+  }
+
+  &__delete {
+    display: block;
+    font-weight: 500;
+    color: $color-danger-dark;
+    text-align: center;
+    cursor: pointer;
+    margin-top: $space-lg;
+    margin-bottom: $space-lg;
+  }
+}
+
+.highcharts-title {
+  font-weight: 700 !important;
+  font-size: $font-size-xxs !important;
+  color: $color-grey-dark !important;
+}
+
+.dataTables_wrapper.no-footer .dataTables_scrollBody {
+  border-bottom: none !important;
+}

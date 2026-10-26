@@ -1,0 +1,43 @@
+{% extends 'layouts/accounts.twig' %}
+
+{% block body %}
+	<section class="accounts-connect__main">
+		<h1>{{ __('provider.googleplay.title') }}</h1>
+
+		{% if googleConfigurationError %}
+		<p role="alert">{{ googleConfigurationError }} Contact the administrator to enable Google Play reporting.</p>
+		{% else %}
+		<h2>{{ __('provider.googleplay.step_1.title') }}</h2>
+		<ol>
+			<li>{{ __('provider.googleplay.step_1.description_step_1') }}
+				<div>
+					<a href="https://play.google.com/apps/publish/#AdminPlace" target="_blank">Play Console (Users & permissions)</a>
+				</div>
+			</li>
+			<li>{{ __('provider.googleplay.step_1.description_step_2') }}</li>
+			<li>{{ __('provider.googleplay.step_1.description_step_3') }}</li>
+			<li>{{ __('provider.googleplay.step_1.description_step_4') }}</li>
+			<div class="accounts-connect__data">
+				{{ serviceAccountEmail }}
+			</div>
+		</ol>
+
+		<h2>{{ __('provider.googleplay.step_2.title') }}</h2>
+		<ol>
+			<li>{{ __('provider.googleplay.step_2.description_step_1') }}
+				<div>
+					<a href="https://play.google.com/console/developers/download-reports/financial" target="_blank">Play Console (Financial Reports)</a>
+				</div>
+			</li>
+			<li>{{ __('provider.googleplay.step_2.description_step_2') }}</li>
+		</ol>
+
+		<form method="POST" class="accounts-connect">
+			<input type="hidden" name="_csrf" value="{{ _csrf }}"/>
+			<input type="text" name="uri" placeholder="{{ __('provider.googleplay.uri') }}" required>
+			<input type="hidden" name="code" value="{{ code }}"/>
+			<button type="submit" class="button button--primary">{{ __('provider.submit') }}</button>
+		</form>
+		{% endif %}
+	</section>
+{% endblock %}

@@ -1,0 +1,10 @@
+.tips {
+  background-color: $color-grey-lightest;
+  padding: $space-xs $space-lg;
+  border-radius: $border-radius-md;
+
+  &__inline-image {
+    height: 30px;
+    display: inline-block;
+  }
+}

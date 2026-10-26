@@ -1,0 +1,127 @@
+{% extends 'layouts/dashboard.twig' %}
+
+{% block body %}
+
+{% if error %}
+	<div class="alert alert--danger">
+		<img src="/images/icons/danger.svg" alt="Warning icon" class="alert__icon">{{ error }}
+	</div>
+{% endif %}
+
+{% if reports | length > 0 and showAmounts %}
+	<section class="card reports">
+		<header class="card__header reports__header">
+			<h1 class="card__title">{{ __('reports.overview') }}</h1>
+		</header>
+		<main class="card__main">
+			<div class="spline-chart" data-source="#chart-data"></div>
+		</main>
+	</section>
+
+	<table id="chart-data" style="display: none;">
+		<tr>
+			<td>
+				{{ __('reports.overview.date_label') }}
+			</td>
+			<td>
+				{{ __('reports.overview.earnings_label') }}
+			</td>
+			<td>
+				Earnings prediction
+			</td>
+		</tr>
+		{% for report in reportsForGraph | reverse %}
+			{% if report.report_data.merchantCurrency == defaultCurrency %}
+				<tr>
+					<td>
+						{{ report.report_data.year }}/{{ report.report_data.month }}</td>
+					<td>
+						{{ report.earnings | number_format(2) }}
+					</td>
+					<td>
+						{% if loop.last %}
+							{% if predictions | length > 0 %}
+								{{ predictions.0.earning }}
+							{% endif %}
+						{% endif %}
+					</td>
+				</tr>
+			</td>
+		</tr>
+	{% endif %}
+{% endfor %}
+{% for prediction in predictions %}
+	{% if not loop.first %}
+		<tr>
+			<td>
+				{{ prediction.date }}</td>
+			<td></td>
+			<td>
+				{{ prediction.earning | number_format(2) }}</td>
+		</tr>
+	{% endif %}
+{% endfor %}</table>{% endif %}<section class="card reports"><header class="card__header reports__header">
+<h1 class="card__title">{{ __('reports.title') }}</h1>
+<div class="accounts__form form-line">
+	<form method="POST">
+		<input type="hidden" name="_csrf" value="{{ _csrf }}"/>
+		<select id="month" name="month">
+			{% for month in months %}
+				<option value="{{ month.number }}" {% if month.number == defaultMonth %} selected="selected" {% endif %}>
+					{{ month.name }}</option>
+			{% endfor %}
+		</select>
+		<input id="year" name="year" type="number" placeholder="Year" value="{{ year }}"/>
+		<select id="currency" name="currency">
+			{% for currency in currencyCodes %}
+				<option value="{{ currency }}" {% if currency == defaultCurrency %} selected="selected" {% endif %}>
+					{{ currency }}
+				</option>
+			{% endfor %}
+		</select>
+		<button class="button button--primary button--create" type="submit">{{ __('reports.create') }}</button>
+	</form>
+</div></header><main class="card__main">
+{% if reports | length == 0 %}
+	<div class="card__zero zerostate">
+		<div class="zerostate__image-container">
+			<img src="/images/illustrations/report.svg" class="zerostate__image">
+		</div>
+		<p class="zerostate__message">
+			{{ __('reports.zero_state') }}
+		</p>
+		<div class="zerostate__call-to-action">
+			<form method="POST">
+				<input type="hidden" name="_csrf" value="{{ _csrf }}"/>
+				<input type="hidden" name="month" value="{{ defaultMonth }}"/>
+				<input type="hidden" name="currency" value="{{ defaultCurrency }}"/>
+				<input type="hidden" name="year" value="{{ year }}"/>
+				<button class="button button--create" type="submit">{{ __('reports.zero_button') }}
+					({{ defaultMonthString }}
+					{{ year }})</button>
+			</form>
+		</div>
+	</div>
+{% else %}
+	<ul class="card__items">
+		{% for report in reports %}
+			<li class="reports__item card__item">
+				<a href="/reports/{{ report.report_data.merchantCurrency }}/{{ report.report_data.year }}/{{ report.report_data.month }}" class="reports__item-link card__item-link">
+					<span>
+						{{ report.report_data.monthString }}
+						{{ report.report_data.year }}
+					</span>
+					<span class="vertical-center reports__price">
+						<span class="badge badge--accent">
+							{% if showAmounts %}
+								{{ report.earnings | number_format(2) }}
+							{% endif %}
+							<span class="badge__inside-small">{{ report.report_data.merchantCurrency }}</span>
+						</span>
+						<span class="card__chevron">›</span>
+					</span>
+				</a>
+			</li>
+		{% endfor %}
+	</ul>
+{% endif %}</main></section>{% endblock %}

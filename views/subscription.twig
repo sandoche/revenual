@@ -1,0 +1,18 @@
+{% extends 'layouts/stripe.twig' %}
+
+{% block body %}
+	<div class="loader" style="background-color: unset">
+		<div>
+			<svg viewbox="25 25 50 50">
+				<circle cx="50" cy="50" r="20"></circle>
+			</svg>
+		</div>
+		<p></p>
+	</div>
+
+	<script src="https://js.stripe.com/v3/"></script>
+	<script>
+		var stripe = Stripe('{{ STRIPE_PUBLIC_KEY }}');
+stripe.redirectToCheckout({sessionId: '{{ CHECKOUT_SESSION_ID }}'}).then(function (result) {})
+	</script>
+{% endblock %}

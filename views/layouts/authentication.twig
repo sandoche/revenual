@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		{% include '../partials/head.twig' %}
+		<title>{{ __('name') }}
+			|
+			{{ title }}</title>
+		{% block head %}{% endblock %}
+	</head>
+
+	<body class="authentication">
+		{% include '../partials/alerts.twig' %}
+		{% block body %}{% endblock %}
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="/js/main.js"></script>
+		{% block scripts %}{% endblock %}
+		{% include '../partials/uservoice.twig' %}
+	</body>
+
+</html>

@@ -1,0 +1,18 @@
+{% extends 'layouts/authentication.twig' %}
+
+{% block body %}
+	<main class="login card">
+		<div class="card__container">
+			<img src="/images/logo.svg" alt="Revenual" class="navigation__logo">
+			<form method="POST" class="form--forgot">
+				<h1>{{ __('password_reset.title') }}</h1>
+				<input type="hidden" name="_csrf" value="{{ _csrf }}"/>
+				<label for="password">{{ __('password_reset.new_password.label') }}</label>
+				<input type="password" name="password" id="password" placeholder="{{ __('password_reset.new_password.placeholder') }}" autofocus="autofocus" required="required"/>
+				<label class="col-form-label font-weight-bold" for="confirm">{{ __('password_reset.confirm_password.label') }}</label>
+				<input class="form-control" type="password" name="confirm" id="confirm" placeholder="{{ __('password_reset.confirm_password.placeholder') }}" required="required"/>
+				<button class="button button--primary" type="submit">{{ __('password_reset.button') }}</button>
+			</form>
+		</div>
+	</main>
+{% endblock %}

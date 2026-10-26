@@ -1,0 +1,41 @@
+.settings {
+  &__account-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @media screen and (max-width: $screen-sm) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  &__main {
+    background-color: $color-grey-lightest;
+    padding: $space-md 0;
+
+    @media screen and (max-width: $screen-sm) {
+      padding: $space-sm;
+    }
+  }
+
+  &__subscription-plan {
+    box-shadow: none;
+    border: 1px solid $color-grey-light;
+  }
+
+  &__subscription {
+    padding: $space-sm;
+  }
+
+  &__subscription-actions {
+    display: flex;
+    justify-content: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: -$space-sm;
+    margin-top: $space-md;
+    background-color: #fff;
+    padding: $space-sm;
+  }
+}

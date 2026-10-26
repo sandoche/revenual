@@ -1,0 +1,23 @@
+{% extends 'layouts/authentication.twig' %}
+
+{% block body %}
+	<main class="login card">
+		<div class="card__container">
+			<img src="/images/logo.svg" alt="Revenual" class="navigation__logo">
+			<form method="POST" class="login-form">
+				<input type="hidden" name="_csrf" value="{{ _csrf }}"/>
+				<input type="email" name="email" id="email" placeholder="{{ __('login.email') }}" autofocus="autofocus" required="required"/>
+				<input type="password" name="password" id="password" placeholder="{{ __('login.password') }}" required="required"/>
+				<button class="button button--primary button--login" type="submit">{{ __('login.button') }}</button>
+				<a class="button-link button-link--primary" href="/forgot">{{ __('login.forgot_password') }}</a>
+			</form>
+		</div>
+	</main>
+	<a href="/signup" class="frame__link">
+		<section class="frame">
+			<p>{{ __('login.no_accounts') }}
+				<span class="button-link button-link--primary">{{ __('login.sign_up') }}</span>
+			</p>
+		</section>
+	</a>
+{% endblock %}

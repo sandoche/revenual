@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		{% include '../partials/head.twig' %}
+		<title>{{ __('name') }}
+			|
+			{{ title }}</title>
+		{% block head %}{% endblock %}
+	</head>
+
+	<body class="onboarding"> {% block body %}{% endblock %}{% block scripts %}{% endblock %}
+		{% include '../partials/uservoice.twig' %}
+	</body>
+
+</html>

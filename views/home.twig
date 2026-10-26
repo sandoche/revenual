@@ -1,0 +1,11 @@
+{% extends 'layouts/landing.twig' %}
+
+{% block body %}
+<header class="home__header">
+  <h1 class="home__title">{{ __('home.unique_value_proposition') }}</h1>
+  <p class="home__description">{{ __('home.description') }}</p>
+  <div class="home__buttons">
+    <a class="button" href="/reports">{{ __('home.call_to_action') }}</a>
+  </div>
+</header>
+{% endblock %}

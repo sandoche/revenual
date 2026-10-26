@@ -1,0 +1,73 @@
+.card {
+  box-shadow: $shadow-elevation-1;
+  border-radius: $border-radius-card;
+  background: #fff;
+  margin-bottom: $space-md;
+
+  &__header {
+    padding: $space-sm;
+    border-bottom: 2px solid $color-grey-lightest;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @media screen and (max-width: $screen-lg) {
+      flex-direction: column;
+    }
+  }
+
+  &__title {
+    font-size: $font-size-md;
+
+    @media screen and (max-width: $screen-lg) {
+      margin-bottom: $space-sm;
+    }
+  }
+
+  &__main {
+    margin: 0;
+  }
+
+  &__items {
+    padding: 0;
+    margin: 0;
+  }
+
+  &__item {
+    padding: $space-xxs $space-sm;
+    list-style: none;
+    border-bottom: 2px solid $color-grey-light;
+    background-color: $color-grey-lightest;
+
+    &:last-of-type {
+      border-bottom: none;
+      border-radius: 0 0 $border-radius-card $border-radius-card;
+    }
+  }
+
+  &__item-link {
+    color: $color-grey-darkest;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    transform: translateX(0) translateY(0) translateZ(0);
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateX(6px) translateY(0) translateZ(0);
+    }
+  }
+
+  &__footer {
+    padding: $space-sm;
+  }
+
+  &__container {
+    padding: $space-sm;
+  }
+
+  &__zero {
+    padding: $space-sm;
+  }
+}

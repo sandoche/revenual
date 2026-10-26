@@ -1,0 +1,88 @@
+.signup {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+
+  .navigation__logo {
+    margin-left: $space-lg;
+  }
+
+  &__infos-container {
+    background-color: $color-grey-lightest;
+    border-right: 1px solid $color-grey;
+    width: 100%;
+    max-width: 400px;
+    padding: $space-xl;
+
+    @media screen and (max-width: $screen-md) {
+      display: none;
+    }
+  }
+  &__features {
+    list-style-type: none;
+    padding: 0;
+    margin-top: $space-lg;
+  }
+  &__feature {
+    display: flex;
+    align-items: flex-start;
+
+    h2 {
+      font-size: $font-size-md;
+      line-height: 1.4;
+    }
+
+    p {
+      margin-top: $space-xxs;
+      margin-bottom: $space-lg;
+    }
+  }
+  &__feature-icon {
+    width: 20px;
+    margin-right: $space-xxs;
+    margin-top: 5px;
+  }
+  &__form-container {
+    width: 100%;
+    max-width: 800px;
+    padding: $space-xl;
+    display: flex;
+    flex-direction: column;
+
+    @media screen and (max-width: $screen-md) {
+      padding: $space-md;
+    }
+  }
+  &__title {
+  }
+  &__already {
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+  }
+  &__label {
+    font-weight: 500;
+  }
+  &__input {
+    margin-bottom: $space-xs;
+  }
+  &__space {
+    &--first {
+      flex: 1;
+      background-color: $color-grey-lightest;
+
+      @media screen and (max-width: $screen-md) {
+        display: none;
+      }
+    }
+    &--last {
+      flex: 1;
+    }
+  }
+
+  button {
+    margin-top: $space-lg;
+  }
+}

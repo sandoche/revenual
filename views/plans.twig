@@ -1,0 +1,44 @@
+{% extends 'layouts/onboarding.twig' %}
+
+{% block body %}
+	<div class="signup welcome__container">
+		<div class="signup__space--first"></div>
+		<aside class="signup__infos-container">
+			<a href="/"><img src="/images/logo.svg" alt="Revenual" class="navigation__logo"></a>
+			<ul class="signup__features">
+				<li class="signup__feature">
+					<img src="/images/icons/success.svg" alt="Success icon" class="signup__feature-icon">
+					<div>
+						<h2>{{ __('subscription.features.first.title') }}</h2>
+						<p>{{ __('subscription.features.first.subtitle') }}</p>
+					</div>
+				</li>
+				<li class="signup__feature">
+					<img src="/images/icons/success.svg" alt="Success icon" class="signup__feature-icon">
+					<div>
+						<h2>{{ __('subscription.features.second.title') }}</h2>
+						<p>{{ __('subscription.features.second.subtitle') }}</p>
+					</div>
+				</li>
+				<li class="signup__feature">
+					<img src="/images/icons/success.svg" alt="Success icon" class="signup__feature-icon">
+					<div>
+						<h2>{{ __('subscription.features.third.title') }}</h2>
+						<p>{{ __('subscription.features.third.subtitle') }}</p>
+					</div>
+				</li>
+			</ul>
+		</aside>
+		<main class="signup__form-container welcome__form subscription__choices">
+			<h1 class="signup__title welcome__title">{{ __('subscription.plans.title') }}</h1>
+			{% include 'partials/alerts.twig' %}
+			<div class="subscription__plans">
+				{% for plan in plans %}
+					{% include 'partials/subscription-plan.twig' %}
+				{% endfor %}
+			</div>
+
+		</main>
+		<div class="signup__space--last"></div>
+	</div>
+{% endblock %}

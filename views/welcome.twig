@@ -1,0 +1,84 @@
+{% extends 'layouts/onboarding.twig' %}
+
+{% block body %}
+	<div class="signup welcome__container">
+		<div class="signup__space--first"></div>
+		<aside class="signup__infos-container">
+			<img src="/images/logo.svg" alt="Revenual" class="navigation__logo">
+			<ul class="signup__features">
+				<li class="signup__feature">
+					<img src="/images/icons/success.svg" alt="Success icon" class="signup__feature-icon">
+					<div>
+						<h2>{{ __('welcome.subtitle') }}</h2>
+						<p>{{ __('welcome.description') }}</p>
+					</div>
+				</li>
+			</ul>
+		</aside>
+		<main class="signup__form-container welcome__form">
+			<h1 class="signup__title welcome__title">{{ __('welcome.title') }}</h1>
+
+			{% if error %}
+				<div class="alert alert--danger">
+					<img src="/images/icons/danger.svg" alt="Warning icon" class="alert__icon">{{ __('accounts.error') }}
+				</div>
+			{% endif %}
+			{% if info %}
+				<div class="alert alert--info">
+					<img src="/images/icons/info.svg" alt="Info icon" class="alert__icon">
+					{{ __('accounts.required') }}
+				</div>
+			{% endif %}
+
+			{% if accounts | length  > 0%}
+				<h2 class="welcome__subtitle">{{ __('accounts.added') }}</h2>
+				<div class="welcome__added">
+					<ul>
+						{% for account in accounts %}
+							<li class="welcome-account__added">
+								{{ account.type }}
+								•
+								{{ account.id }}
+							</li>
+						{% endfor %}
+					</ul>
+				</div>
+			{% endif %}
+
+			<h2 class="welcome__subtitle">{{ __('accounts.toadd') }}</h2>
+			<div class="welcome__toadd">
+				<ul class="welcome__links">
+					{% for provider in providers %}
+						<li>
+							<a href="{{ provider.url }}" class="welcome-account__link">
+								<img src="/images/providers/{{ provider.slug }}.png">
+								<span>{{ provider.name }}</span>
+							</a>
+						</li>
+					{% endfor %}
+					<li>
+						<a class="welcome-account__link welcome-account__link--desactivated">
+							<img src="/images/providers/stripe.jpg">
+							<span>{{ __('accounts.soon') }}</span>
+						</a>
+					</li>
+					<li>
+						<a class="welcome-account__link welcome-account__link--desactivated">
+							<img src="/images/providers/paypal.png">
+							<span>{{ __('accounts.soon') }}</span>
+						</a>
+					</li>
+					<li>
+						<a class="welcome-account__link welcome-account__link--desactivated">
+							<img src="/images/providers/googlesense.png">
+							<span>{{ __('accounts.soon') }}
+							</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<a href="/welcome/next" class="button button--primary">{{ __('welcome.next') }}</a>
+		</main>
+		<div class="signup__space--last"></div>
+	</div>
+{% endblock %}

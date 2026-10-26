@@ -1,0 +1,43 @@
+<h2>{{ __('report.exchange.title') }}</h2>
+<p>{{ __('report.exchange.description') }}
+	<strong>
+		<a class="link" href="https://appstoreconnect.apple.com/itc/payments_and_financial_reports#/?date={{ year }}{{ month }}" target="_blank">Apple report</a>
+	</strong>
+</p>
+<ol class="tips">
+	<li>{{ __('report.exchange.report.step1') }}</li>
+	<li>{{ __('report.exchange.report.step2') }}
+		<img src="/images/others/apple_export.png" class="tips__inline-image"></li>
+	<li>{{ __('report.exchange.report.step3') }}</li>
+</ol>
+<br>
+<h3>{{ __('report.exchange.upload') }}</h3>
+<br>
+<form method="POST" action="/reports/{{ currency }}/{{ year }}/{{ month }}/upload" enctype="multipart/form-data">
+	<input type="hidden" name="_csrf" value="{{ _csrf }}"/>
+	<input type="file" name="file" value="file" id="file">
+	<label for="file"></label>
+	<br><br>
+	<input type="submit" value="{{ __('report.exchange.upload_file') }}" class="button button--primary">
+	<br>
+</form>
+<br>
+<br>
+<br>
+<h3>{{ __('report.exchange.manually') }}</h3>
+<br>
+<form method="POST" action="/reports/{{ currency }}/{{ year }}/{{ month }}/update">
+	<input type="hidden" name="_csrf" value="{{ _csrf }}"/>
+	{% for exchange in exchangesToSet %}
+		{% if exchange.type == 'appstore' %}
+			<div class="report__exchange">
+				<label>{{ exchange.from }}
+					-
+					{{ exchange.to }}</label>
+				<input type="text" name="{{ exchange.id }}" value="{{ exchange.rate }}">
+			</div>
+		{% endif %}
+	{% endfor %}
+	<br>
+	<button class="button button--primary">{{ __('report.exchange.update') }}</button>
+</form>

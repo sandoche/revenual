@@ -1,0 +1,31 @@
+.badge {
+  border-radius: 100px;
+  padding: $space-4xs $space-xs;
+  display: inline-block;
+  margin-right: $space-xxs;
+  font-size: $font-size-xxs;
+  font-weight: 500;
+
+  &--accent {
+    color: $color-accent-darkest;
+    background-color: $color-accent-lighter;
+  }
+
+  &--success {
+    color: $color-success-darkest;
+    background-color: $color-success-lighter;
+  }
+
+  &--danger {
+    color: $color-danger-darkest;
+    background-color: $color-danger-lighter;
+  }
+
+  &__inside-small {
+    opacity: 0.6;
+  }
+
+  &--small {
+    font-size: $font-size-xxxs;
+  }
+}

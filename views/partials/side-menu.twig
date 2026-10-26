@@ -1,0 +1,73 @@
+<nav class="navigation">
+	<a href="/reports" class="navigation__branding">
+		<img src="/images/logo.svg" alt="Revenual" class="navigation__logo-nav">
+		<span class="badge badge--accent badge--small navigation__beta-badge">
+			BETA
+		</span>
+	</a>
+	<ul class="navigation__links">
+		<li class="navigation__link">
+			<a href="/reports" class="navigation__link-a{% if path == '/reports' %} navigation__link-a--active{% endif %}">
+				<img src="/images/icons/reports.svg" alt="Reports icon" class="navigation__icon">
+				{{ __('menu.reports') }}
+			</a>
+		</li>
+		<li class="navigation__link">
+			<a href="/invoices" class="navigation__link-a{% if path == '/invoices' %} navigation__link-a--active{% endif %}">
+				<img src="/images/icons/invoices_2.svg" alt="Invoices icon" class="navigation__icon">
+				{{ __('menu.invoices') }}</a>
+		</li>
+		<li class="navigation__link navigation__separator">
+			<a href="/settings" class="navigation__link-a{% if path == '/settings' %} navigation__link-a--active{% endif %}">
+				<img src="/images/icons/settings.svg" alt="Settings icon" class="navigation__icon">
+				{{ __('menu.settings') }}
+			</a>
+			{% if path == '/settings' %}
+				<ul class="navigation__submenu">
+					<li class="navigation__link">
+						<a href="/settings#accounts" class="navigation__link-a">
+							<img src="/images/icons/accounts.svg" alt="Accounts icon" class="navigation__icon">
+							{{ __('menu.settings.accounts') }}
+						</a>
+					</li>
+					<li class="navigation__link">
+						<a href="/settings#invoices" class="navigation__link-a">
+							<img src="/images/icons/invoices.svg" alt="Invices icon" class="navigation__icon">
+							{{ __('menu.settings.invoices') }}
+						</a>
+					</li>
+					<li class="navigation__link">
+						<a href="/settings#profile" class="navigation__link-a">
+							<img src="/images/icons/profile.svg" alt="Invices icon" class="navigation__icon">
+							{{ __('menu.settings.profile') }}
+						</a>
+					</li>
+					<li class="navigation__link">
+						<a href="/settings#subscription" class="navigation__link-a">
+							<img src="/images/icons/subscription.svg" alt="Subscription icon" class="navigation__icon">
+							{{ __('menu.settings.subscription') }}
+						</a>
+					</li>
+					<li class="navigation__link">
+						<a href="/settings#password" class="navigation__link-a">
+							<img src="/images/icons/password.svg" alt="Invices icon" class="navigation__icon">
+							{{ __('menu.settings.password') }}
+						</a>
+					</li>
+				</ul>
+			{% endif %}
+		</li>
+		<li class="navigation__link">
+			<a href="/ideas-lab" class="navigation__link-a" target="_blank">
+				<img src="/images/icons/ideas-lab.svg" alt="Logout icon" class="navigation__icon">
+				{{ __('menu.ideas_lab') }}
+			</a>
+		</li>
+		<li class="navigation__link navigation__separator">
+			<a href="/logout" class="navigation__link-a">
+				<img src="/images/icons/logout.svg" alt="Logout icon" class="navigation__icon">
+				{{ __('menu.logout') }}
+			</a>
+		</li>
+	</ul>
+</nav>

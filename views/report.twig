@@ -1,0 +1,324 @@
+{% extends 'layouts/dashboard.twig' %}
+
+{% block body %}
+	{% if showAmounts == false %}
+		{% include 'partials/subscription.twig' %}
+	{% endif %}
+	<div {% if showAmounts == false %} class="blur" {% endif %}>
+		{% if showUpdateExchangeAlert %}
+			<div class="alert alert--warning">
+				<img src="/images/icons/warning.svg" alt="Warning icon" class="alert__icon">
+				<span>
+					{{ __('report.alert_exchange_rates_1') }}
+					<a class="alert__link openModal">{{ __('report.alert_exchange_rates_2') }}</a>
+				</span>
+			</div>
+		{% endif %}
+
+		{% if error %}
+			<div class="alert alert--danger">
+				<img src="/images/icons/danger.svg" alt="Warning icon" class="alert__icon">{{ error }}
+			</div>
+		{% endif %}
+
+		<section class="card report">
+			<header class="card__header reports__header">
+				<h1 class="card__title">
+					{{ __('report.title') }}
+					•
+					{{ monthString }}
+					{{ year }}
+					•
+					{{ currency }}
+				</h1>
+				<div>
+					<a class="button openModal">
+						{{ __('report.update_exchange_rates') }}
+					</a>
+				</div>
+			</header>
+			<main class="card__main">
+				<div class="report__list-providers">
+					{% for provider in providers %}
+						<span class="badge badge--accent">{{ provider.providerType }}</span>
+					{% endfor %}
+				</div>
+				<div class="report__results">
+					<table id="table-all" class="dataTable" data-page-length="10">
+						<thead>
+							<tr>
+								<td>{{ __('report.global.unit') }}</td>
+								<td>{{ __('report.global.sales') }}</td>
+								<td>{{ __('report.global.fees') }}</td>
+								<td>{{ __('report.global.taxes') }}</td>
+								<td>{{ __('report.global.earnings') }}</td>
+							</tr>
+						</thead>
+						<tbody>
+							{% if showAmounts %}
+								<tr>
+									<td>{{ total.units }}</td>
+									<td>{{ total.sales }}</td>
+									<td>{{ total.fees }}</td>
+									<td>{{ total.taxes }}</td>
+									<td>{{ total.earnings }}</td>
+								</tr>
+							{% else %}
+								<tr>
+									<td>000</td>
+									<td>000</td>
+									<td>000</td>
+									<td>000</td>
+									<td>000</td>
+								</tr>
+							{% endif %}
+						</tbody>
+					</thead>
+				</table>
+			</div>
+		</main>
+	</section>
+
+	<section class="card report">
+		<header class="card__header reports__header">
+			<h2 class="card__title">
+				{{ __('report.charts') }}
+			</h2>
+		</header>
+		<main class="card__main">
+			<div class="report__charts">
+				<div class="pie-chart" data-source="#table-provider" data-title="Per provider"></div>
+				<div class="pie-chart" data-source="#table-product" data-title="Per product"></div>
+				<div class="pie-chart" data-source="#table-country" data-title="Per country"></div>
+			</div>
+		</main>
+	</section>
+
+	<section class="card report">
+		<header class="card__header reports__header">
+			<h2 class="card__title">
+				{{ __('report.perprovider.title') }}
+			</h2>
+		</header>
+		<main class="card__main">
+			<div class="report__results">
+				<table id="table-provider" class="dataTable" data-page-length="10">
+					<thead>
+						<tr>
+							<td>{{ __('report.perprovider.provider') }}</td>
+							<td>{{ __('report.global.unit') }}</td>
+							<td>{{ __('report.global.sales') }}</td>
+							<td>{{ __('report.global.fees') }}</td>
+							<td>{{ __('report.global.taxes') }}</td>
+							<td>{{ __('report.global.earnings') }}</td>
+						</tr>
+					</thead>
+					<tbody>
+						{% for provider in perProvider %}
+							{% if showAmounts %}
+								<tr>
+									<td>{{ provider._id.providerType }}</td>
+									<td>{{ provider.units }}</td>
+									<td>{{ provider.sales| round(2, 'floor') }}</td>
+									<td>{{ provider.fees | round(2, 'floor') }}</td>
+									<td>{{ provider.taxes | round(2, 'floor') }}</td>
+									<td>{{ provider.earnings| round(2, 'floor') }}</td>
+								</tr>
+							{% else %}
+								<tr>
+									<td>{{ provider._id.providerType }}</td>
+									<td>000</td>
+									<td>000</td>
+									<td>000</td>
+									<td>000</td>
+									<td>100</td>
+								</tr>
+							{% endif %}
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</main>
+	</section>
+
+	<section class="card report">
+		<header class="card__header reports__header">
+			<h2 class="card__title">
+				{{ __('report.perproduct.title') }}
+			</h2>
+		</header>
+		<main class="card__main">
+			<div class="report__results">
+				<table id="table-product" class="dataTable" data-page-length="10">
+					<thead>
+						<tr>
+							<td>{{ __('report.perproduct.productname') }}</td>
+							<td>{{ __('report.global.unit') }}</td>
+							<td>{{ __('report.global.sales') }}</td>
+							<td>{{ __('report.global.fees') }}</td>
+							<td>{{ __('report.global.taxes') }}</td>
+							<td>{{ __('report.global.earnings') }}</td>
+						</tr>
+					</thead>
+					<tbody>
+						{% for product in perProduct %}
+							{% if showAmounts %}
+								<tr>
+									<td>{{ product._id.productId }}</td>
+									<td>{{ product.units }}</td>
+									<td>{{ product.sales| round(2, 'floor') }}</td>
+									<td>{{ product.fees | round(2, 'floor') }}</td>
+									<td>{{ product.taxes | round(2, 'floor') }}</td>
+									<td>{{ product.earnings| round(2, 'floor') }}</td>
+								</tr>
+							{% else %}
+								<tr>
+									<td>{{ product._id.productId }}</td>
+									<td>000</td>
+									<td>000</td>
+									<td>000</td>
+									<td>000</td>
+									<td>100</td>
+								</tr>
+							{% endif %}
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</main>
+	</section>
+	<section class="card report">
+		<header class="card__header reports__header">
+			<h2 class="card__title">
+				{{ __('report.percountry.title') }}
+			</h2>
+		</header>
+		<main class="card__main">
+			<div class="report__results">
+				<table id="table-country" class="dataTable" data-page-length="10">
+					<thead>
+						<tr>
+							<td>{{ __('report.percountry.country') }}</td>
+							<td>{{ __('report.global.unit') }}</td>
+							<td>{{ __('report.global.sales') }}</td>
+							<td>{{ __('report.global.fees') }}</td>
+							<td>{{ __('report.global.taxes') }}</td>
+							<td>{{ __('report.global.earnings') }}</td>
+						</tr>
+					</thead>
+					<tbody>
+						{% for country in perCountry %}
+							{% if showAmounts %}
+								<tr>
+									<td>{{ country._id.countryCode }}</td>
+									<td>{{ country.units }}</td>
+									<td>{{ country.sales| round(2, 'floor') | number_format(2) }}</td>
+									<td>{{ country.fees | round(2, 'floor') | number_format(2) }}</td>
+									<td>{{ country.taxes | round(2, 'floor') | number_format(2) }}</td>
+									<td>{{ country.earnings| round(2, 'floor') | number_format(2) }}</td>
+								</tr>
+							{% else %}
+								<tr>
+									<td>{{ country._id.countryCode }}</td>
+									<td>000</td>
+									<td>000</td>
+									<td>000</td>
+									<td>000</td>
+									<td>100</td>
+								</tr>
+							{% endif %}
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</main>
+	</section>
+	<section class="card report">
+		<header class="card__header reports__header">
+			<h2 class="card__title">
+				{{ __('report.invoices.title') }}
+			</h2>
+		</header>
+		<main class="card__main">
+			<div class="report__results">
+				<ul class="card__items">
+					{% for provider in providers %}
+						<li class="report__item card__item">
+							<a href="/invoices/{{ year }}-{{ month }}-{{ currency }}-{{ provider.providerType }}-{{ userId }}.xlsx" class="card__item-link">
+								<span>
+									{{ __('report.invoices.reverse_invoice') }}
+									•
+									{{ provider.providerType }}
+								</span>
+								<span class="card__chevron">›</span>
+							</a>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</main>
+	</section>
+	<div id="exchange-modal" class="modal">
+		{% include 'partials/exchanges.twig' %}</div>
+
+	<a data-delete="/reports/{{ currency }}/{{ year }}/{{ month }}/delete" class="report__delete">Delete report</a>
+</div>{% endblock %}{% block scripts %}
+
+
+<script>
+	$(document).ready(function () {
+
+var optionsAll = {
+paging: false,
+searching: false,
+ordering: false,
+columnDefs: [
+{
+targets: 1,
+className: 'dt-right'
+}, {
+targets: 2,
+className: 'dt-right'
+}, {
+targets: 3,
+className: 'dt-right'
+}, {
+targets: 4,
+className: 'dt-right'
+}
+]
+};
+
+var options = {
+scrollX: true,
+order: [
+[5, 'desc']
+],
+columnDefs: [
+{
+targets: 2,
+className: 'dt-right'
+}, {
+targets: 3,
+className: 'dt-right'
+}, {
+targets: 4,
+className: 'dt-right'
+}, {
+targets: 5,
+className: 'dt-right'
+}
+]
+};
+
+$('#table-all').DataTable(optionsAll);
+$('#table-provider').DataTable(options);
+$('#table-product').DataTable(options);
+$('#table-country').DataTable(options);
+
+$(".openModal").on('click', function (event) {
+$("#exchange-modal").modal({escapeClose: false, clickClose: false, showClose: true, fadeDuration: 100});
+});
+
+});
+</script>{% endblock %}

@@ -1,0 +1,30 @@
+.body__dashboard {
+  background-color: $color-grey-light;
+}
+
+.dashboard {
+  display: flex;
+
+  &__menu {
+    min-width: 300px;
+    margin-top: $space-md;
+
+    @media screen and (max-width: $screen-lg) {
+      min-width: 230px;
+    }
+
+    @media screen and (max-width: $screen-sm) {
+      min-width: 0;
+      max-width: 0;
+    }
+  }
+
+  &__content {
+    width: 100%;
+    margin-top: $space-md;
+
+    @media screen and (max-width: $screen-sm) {
+      padding-bottom: $space-xxl;
+    }
+  }
+}

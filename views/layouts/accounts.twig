@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		{% include '../partials/head.twig' %}
+		<title>{{ __('name') }}
+			|
+			{{ title }}</title>
+		{% block head %}{% endblock %}
+	</head>
+
+	<body class="accounts">
+		{% include '../partials/alerts.twig' %}
+		{% if error %}
+			<div class="alert alert--danger">
+				<img src="/images/icons/danger.svg" alt="Warning icon" class="alert__icon">{{ error }}
+			</div>
+		{% endif %}
+		<main class="login card">
+			<div class="card__container">
+				<img src="/images/logo.svg" alt="Revenual" class="navigation__logo"> {% block body %}{% endblock %}
+				</div>
+			</main>
+			{% block scripts %}{% endblock %}
+			{% include '../partials/uservoice.twig' %}
+		</body>
+
+	</html>

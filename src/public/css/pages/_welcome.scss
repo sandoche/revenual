@@ -1,0 +1,120 @@
+.welcome {
+  &__title {
+    margin-bottom: $space-lg;
+  }
+
+  &__form {
+    display: block;
+  }
+
+  &__container {
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: $space-xl;
+    }
+  }
+
+  &__links {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-row-gap: $space-md;
+    grid-column-gap: $space-md;
+  }
+}
+
+.welcome-account {
+  &__added {
+    padding: $space-xs 0;
+    border-bottom: 2px solid $color-grey-light;
+  }
+
+  &__added:last-of-type {
+    border-bottom: none;
+  }
+
+  &__link {
+    display: flex;
+    flex-direction: column;
+    box-shadow: $shadow-elevation-2;
+    transition: all 0.3s ease;
+    height: 130px;
+    border-radius: $border-radius-card;
+    justify-content: center;
+    align-items: center;
+    color: $color-primary;
+    font-weight: 500;
+    padding: $space-sm;
+    text-align: center;
+    font-size: $font-size-xxs;
+
+    &--desactivated {
+      opacity: 0.5;
+      box-shadow: $shadow-elevation-1;
+      color: $color-grey-dark;
+      &:hover {
+        box-shadow: $shadow-elevation-1 !important;
+      }
+    }
+
+    img {
+      width: auto;
+      height: 50px;
+      margin-bottom: $space-xs;
+      border-radius: $border-radius-button;
+    }
+
+    &:hover {
+      box-shadow: $shadow-elevation-3;
+    }
+  }
+}
+
+.accounts-connect {
+  display: flex;
+  flex-direction: column;
+
+  &__main {
+    text-align: left;
+    font-size: $font-size-xs;
+
+    p {
+      word-break: break-word;
+      font-size: $font-size-xxs;
+    }
+
+    a {
+      color: $color-primary;
+      font-weight: 500;
+    }
+
+    h1 {
+      font-size: $font-size-lg;
+      margin-bottom: $space-sm;
+    }
+
+    h2 {
+      font-size: $font-size-sm;
+      margin-bottom: 0;
+    }
+
+    ol {
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: $space-xxs;
+    }
+  }
+
+  &__data {
+    background-color: $color-primary-lightest;
+    border-radius: $border-radius-sm;
+    border: 1px solid $color-primary-lighter;
+    margin-left: -20px;
+    font-size: $font-size-xxxs;
+    padding: $space-xxs;
+    user-select: all;
+    font-family: monospace;
+  }
+}
