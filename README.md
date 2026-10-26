@@ -1,5 +1,7 @@
 <img src="src/public/images/logo.svg" width="200" alt="Revenual" />
 
+# Revenual
+
 An Express/TypeScript application that aggregates Google Play and Apple financial reports and generates invoices. It uses MongoDB, Twig and optional Stripe subscriptions.
 
 **Status:** legacy application prepared for local development. Private credential/report examples have been removed, but application-security and dependency hardening is incomplete. Keep it on localhost while evaluating it. This is not a production-ready release. See [SECURITY.md](SECURITY.md) and [third-party licensing notes](THIRD_PARTY_NOTICES.md).
