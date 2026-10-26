@@ -1,4 +1,6 @@
-<img src="src/public/images/logo.svg" width="200" alt="Revenual" />
+<p align="center">
+  <img src="src/public/images/logo.svg" width="200" alt="Revenual" />
+</p>
 
 # Revenual
 
