@@ -161,4 +161,4 @@ For a future deployment, build with `npm ci && npm run build`, provision product
 
 Complete security/dependency and provider-compatibility reviews before exposing this application. Provider report formats and financial calendars may have changed since these legacy parsers were written.
 
-Project code is [MIT](LICENSE), copyright Sandoche Adittane. Bundled assets retain separate terms. Read [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md): Highcharts and Gilroy redistribution rights still need resolution before public release.
+Project code is [MIT](LICENSE), copyright Sandoche Adittane. Bundled assets retain separate terms. 
